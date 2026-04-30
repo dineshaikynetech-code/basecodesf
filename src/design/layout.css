@@ -1,0 +1,53 @@
+@layer components {
+
+    .app-responsive-grid {
+
+        display: grid;
+        /* Default: 1 Column (xs, sm) */
+        grid-template-columns:
+            repeat(1, minmax(0, 1fr));
+
+        gap: var(--grid-gap, 1.5rem);
+
+        width: 100%;
+
+    }
+
+    /*Small: 2 Columns */
+    @media(min-width:550px) {
+
+        .app-responsive-grid {
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+        }
+
+    }
+
+    /* Medium: 3 Columns */
+    @media(min-width:768px) {
+        .app-responsive-grid {
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+        }
+
+    }
+
+    /* Large : 4 Columns */
+    @media(min-width:1024px) {
+        .app-responsive-grid {
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
+        }
+
+    }
+
+    /* XL: 5 Columns */
+    @media(min-width:1400px) {
+        .app-responsive-grid {
+            grid-template-columns:
+                repeat(5, minmax(0, 1fr));
+        }
+
+    }
+
+}

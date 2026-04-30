@@ -1,0 +1,13 @@
+export interface StoragePort {
+  get<T>(key: string): T | null;
+  set<T>(key: string, value: T): void;
+  remove(key: string): void;
+  clear(): void;
+  has(key: string): boolean;
+}
+
+
+export interface Serializer {
+  serialize<T>(value: T): string;
+  deserialize<T>(value: string): T | null;
+}

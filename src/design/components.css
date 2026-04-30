@@ -1,0 +1,26 @@
+
+/* ================================================
+   SIDEBAR NAV ITEMS – PURE TAILWIND + TOKENS
+   ================================================ */
+
+.nav-link {
+    @apply rounded-[var(--radius-nav-item)] transition-all duration-200 ease-out;
+}
+
+/* Replaced static variables with dynamic theme tokens */
+.nav-link-active {
+    @apply bg-primary text-primary-foreground shadow-md dark:bg-primary/90;
+    border-radius: var(--radius-nav-item);
+}
+
+.nav-link:hover:not(.nav-link-active) {
+    @apply bg-accent text-accent-foreground;
+    border-radius: var(--radius-nav-item);
+}
+
+.nav-link-active:hover {
+    @apply brightness-105;
+}
+.dark .nav-link-active:hover {
+    @apply brightness-110;
+}
