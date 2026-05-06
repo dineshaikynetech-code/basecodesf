@@ -73,7 +73,7 @@ export default function AppLayout() {
         items={secondaryPanel?.items || []}
       />
 
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden bg-var[--background]">
         <header className="h-14 border-b border-border bg-card px-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <MenuToggle />

@@ -9,12 +9,15 @@ type PageLoader = () => Promise<{ default: ComponentType }>;
 
 const pageComponentMap: Record<string, PageLoader> = {
   // Location Hub children
-  'listing-dashboard': () => import('@/features/dashboard/pages/ListingDashboard'),
-  listings: () => import('@/features/dashboard/pages/Listings'),
+  'listing-dashboard': () => import('@/features/local-business/pages/ListingDashboard'),
+  listings: () => import('@/features/local-business/pages/BusinessInfoContent'),
+  'add-business': () => import('@/features/local-business/pages/AddBusiness'),
   'business-info': () => import('@/features/dashboard/pages/BusinessInfo'),
-  reviews: () => import('@/features/dashboard/pages/Reviews'),
-  reputation: () => import('@/features/dashboard/pages/Reputation'),
+  reviews: () => import('@/features/local-business/pages/ReviewContent'),
+  reputation: () => import('@/features/local-business/pages/ReputationContent'),
   competitors: () => import('@/features/dashboard/pages/Competitors'),
+
+  
 
   // SMM children
   insights: () => import('@/features/smm/pages/Insights'),

@@ -42,6 +42,7 @@ export interface NavModule {
   sections?: NavSection[];
   children?: NavModule[];        // For nested groups like SMM
   enabled?: boolean;
+  showInNav?: boolean;
 }
 
 export interface AppConfig {

@@ -10,6 +10,7 @@ interface SecondarySidebarItem {
   id: string;
   name: string;
   path: string;
+  showInNav?: boolean;
 }
 
 interface SecondarySideBarProps {
@@ -49,7 +50,7 @@ const { sidebarCollapsed, closeSecondaryPanel } = useUIStore();
 
           {/* Navigation Items */}
           <nav className="flex-1 p-3 space-y-2 overflow-y-auto">
-            {items.map((item) => {
+            {items.filter((item) => item.showInNav !== false).map((item) => {
               const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
               
               return (

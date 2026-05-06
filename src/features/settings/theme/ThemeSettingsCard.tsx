@@ -11,7 +11,7 @@ export default function ThemeSettingsCard() {
     const [open, setOpen] = useState(false)
 
     /* SKELETON LOADER */
-    if (loading)  return <ThemeSettingsCardSkeleton/>
+    if (loading) return <ThemeSettingsCardSkeleton />
 
     return (
         <div>
@@ -27,7 +27,10 @@ export default function ThemeSettingsCard() {
             </div>
 
             {/* THEMES GRID */}
-            <ResponsiveGrid>
+            <ResponsiveGrid
+                cols={{ sm: 2, md: 4, lg: 5 }}
+                gap={4}
+            >
                 {themes.map((t) => (
                     <ThemeCard
                         key={t.id}

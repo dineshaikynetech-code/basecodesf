@@ -59,7 +59,7 @@ export const LoginFormPage = () => {
                         id="email"
                         {...form.register('email')}
                         placeholder="Enter email address"
-                        className="h-12 border-nonefocus-visible:ring-primary"
+                        className="h-12 border-none focus-visible:ring-primary"
                     />
                     {form.formState.errors.email && <p className="text-destructive text-caption">{form.formState.errors.email.message}</p>}
                 </div>

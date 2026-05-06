@@ -12,8 +12,20 @@ import { useOnboardingStore } from '@/shared/store/onboardingStore';
 const LoginPage = lazy(() => import('@/features/auth/pages/Login'));
 const RegisterPage = lazy(() => import('@/features/auth/pages/SignUp'));
 const ForgotPasswordPage = lazy(() => import('@/features/auth/pages/ForgotPassword'));
-const SettingsPage = lazy(() => import('@/features/settings/SettingsPage'));
+const SettingsPage = lazy(() => import('@/features/settings/pages/SettingsPage'));
 const OnboardingPage = lazy(() => import('@/features/onboarding/pages/OnBoarding'));
+
+// === Lazy-loaded Settings Sub Pages ===
+const PersonalInformationPage = lazy(() => import('@/features/settings/pages/PersonalInformationPage'));
+const WorkspaceSettingsPage = lazy(() => import('@/features/settings/pages/WorkspaceSettingsPage'));
+// const SubscriptionPage = lazy(() => import('@/features/settings/pages/Subscription'));
+// const AiBrandAgentPage = lazy(() => import('@/features/settings/pages/AiBrandAgent'));
+const SecurityPage = lazy(() => import('@/features/settings/pages/SecurityPage'));
+// const TeamMembersPage = lazy(() => import('@/features/settings/pages/TeamMembers'));
+// const ManageRolesPage = lazy(() => import('@/features/settings/pages/ManageRoles'));
+// const SocialAccountsPage = lazy(() => import('@/features/settings/pages/SocialAccounts'));
+// const ThemeSettingsPage = lazy(() => import('@/features/settings/theme/ThemeSettingsPage'));
+// const PublishingPage = lazy(() => import('@/features/settings/pages/Publishing'));
 
 const RouteLoader = () => (
   <div className="flex min-h-[40vh] items-center justify-center px-6 text-sm text-muted-foreground">
@@ -115,9 +127,55 @@ export const router = createBrowserRouter([
       ...childRoutes,
       {
         path: 'settings',
-        element: withSuspense(<SettingsPage />, <DashboardPageSkeleton />),
+        children: [
+          {
+            index: true,
+            element: withSuspense(<SettingsPage />, <DashboardPageSkeleton />),
+          },
+          {
+            path: 'personal-information',
+            element: withSuspense(<PersonalInformationPage />, <DashboardPageSkeleton />),
+          },
+          {
+            path: 'workspace',
+            element: withSuspense(<WorkspaceSettingsPage />, <DashboardPageSkeleton />),
+          },
+          // {
+          //   path: 'subscription',
+          //   element: withSuspense(<SubscriptionPage />, <DashboardPageSkeleton />),
+          // },
+          // {
+          //   path: 'ai-brand-agent',
+          //   element: withSuspense(<AiBrandAgentPage />, <DashboardPageSkeleton />),
+          // },
+          {
+            path: 'security',
+            element: withSuspense(<SecurityPage />, <DashboardPageSkeleton />),
+          },
+          // {
+          //   path: 'team-members',
+          //   element: withSuspense(<TeamMembersPage />, <DashboardPageSkeleton />),
+          // },
+          // {
+          //   path: 'manage-roles',
+          //   element: withSuspense(<ManageRolesPage />, <DashboardPageSkeleton />),
+          // },
+          // {
+          //   path: 'social-accounts',
+          //   element: withSuspense(<SocialAccountsPage />, <DashboardPageSkeleton />),
+          // },
+          // {
+          //   path: 'theme',
+          //   element: withSuspense(<ThemeSettingsPage />, <DashboardPageSkeleton />),
+          // },
+          // {
+          //   path: 'publishing',
+          //   element: withSuspense(<PublishingPage />, <DashboardPageSkeleton />),
+          // },
+        ],
       },
+      
       { path: '*', element: <Navigate to="/location/listing-dashboard" replace /> },
     ],
-  },
+  }
 ]);
