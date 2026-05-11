@@ -18,14 +18,14 @@ const OnboardingPage = lazy(() => import('@/features/onboarding/pages/OnBoarding
 // === Lazy-loaded Settings Sub Pages ===
 const PersonalInformationPage = lazy(() => import('@/features/settings/pages/PersonalInformationPage'));
 const WorkspaceSettingsPage = lazy(() => import('@/features/settings/pages/WorkspaceSettingsPage'));
-// const SubscriptionPage = lazy(() => import('@/features/settings/pages/Subscription'));
-// const AiBrandAgentPage = lazy(() => import('@/features/settings/pages/AiBrandAgent'));
+const SubscriptionPage = lazy(() => import('@/features/settings/pages/SubscriptionPage'));
+const AiBrandAgentPage = lazy(() => import('@/features/settings/pages/AiBrandAgentPage'));
 const SecurityPage = lazy(() => import('@/features/settings/pages/SecurityPage'));
-// const TeamMembersPage = lazy(() => import('@/features/settings/pages/TeamMembers'));
-// const ManageRolesPage = lazy(() => import('@/features/settings/pages/ManageRoles'));
-// const SocialAccountsPage = lazy(() => import('@/features/settings/pages/SocialAccounts'));
-// const ThemeSettingsPage = lazy(() => import('@/features/settings/theme/ThemeSettingsPage'));
-// const PublishingPage = lazy(() => import('@/features/settings/pages/Publishing'));
+const TeamMembersPage = lazy(() => import('@/features/settings/pages/TeamMembersPage'));
+const ManageRolesPage = lazy(() => import('@/features/settings/pages/ManageRolesPage'));
+const SocialAccountsPage = lazy(() => import('@/features/integration/pages/ConnectedAccountsPage'));
+const ThemeSettingsPage = lazy(() => import('@/features/settings/pages/ThemeSettingsPage'));
+const PublishingPage = lazy(() => import('@/features/settings/pages/PublishingPage'));
 
 const RouteLoader = () => (
   <div className="flex min-h-[40vh] items-center justify-center px-6 text-sm text-muted-foreground">
@@ -140,38 +140,34 @@ export const router = createBrowserRouter([
             path: 'workspace',
             element: withSuspense(<WorkspaceSettingsPage />, <DashboardPageSkeleton />),
           },
-          // {
-          //   path: 'subscription',
-          //   element: withSuspense(<SubscriptionPage />, <DashboardPageSkeleton />),
-          // },
-          // {
-          //   path: 'ai-brand-agent',
-          //   element: withSuspense(<AiBrandAgentPage />, <DashboardPageSkeleton />),
-          // },
+          {
+            path: 'subscription',
+            element: withSuspense(<SubscriptionPage />, <DashboardPageSkeleton />),
+          },
+          {
+            path: 'ai-brand-agent',
+            element: withSuspense(<AiBrandAgentPage />, <DashboardPageSkeleton />),
+          },
           {
             path: 'security',
             element: withSuspense(<SecurityPage />, <DashboardPageSkeleton />),
           },
-          // {
-          //   path: 'team-members',
-          //   element: withSuspense(<TeamMembersPage />, <DashboardPageSkeleton />),
-          // },
-          // {
-          //   path: 'manage-roles',
-          //   element: withSuspense(<ManageRolesPage />, <DashboardPageSkeleton />),
-          // },
-          // {
-          //   path: 'social-accounts',
-          //   element: withSuspense(<SocialAccountsPage />, <DashboardPageSkeleton />),
-          // },
-          // {
-          //   path: 'theme',
-          //   element: withSuspense(<ThemeSettingsPage />, <DashboardPageSkeleton />),
-          // },
-          // {
-          //   path: 'publishing',
-          //   element: withSuspense(<PublishingPage />, <DashboardPageSkeleton />),
-          // },
+          {
+            path: 'team-members',
+            element: withSuspense(<TeamMembersPage />, <DashboardPageSkeleton />),
+          },
+          {
+            path: 'manage-roles',
+            element: withSuspense(<ManageRolesPage />, <DashboardPageSkeleton />),
+          },
+          {
+            path: 'theme',
+            element: withSuspense(<ThemeSettingsPage />, <DashboardPageSkeleton />),
+          },
+          {
+            path: 'publishing',
+            element: withSuspense(<PublishingPage />, <DashboardPageSkeleton />),
+          },
         ],
       },
       

@@ -27,6 +27,9 @@ const pageComponentMap: Record<string, PageLoader> = {
   engagement: () => import('@/features/smm/pages/Engagement'),
   'smm-analytics': () => import('@/features/smm/pages/Analystics'),
 
+  'connected-accounts': () => import('@/features/integration/pages/ConnectedAccountsPage'),
+  connections: () => import('@/features/integration/pages/ConnectionsPage'),
+
   // Standalone module pages
   'sample-hub': () => import('@/features/sample-hub/SampleHubPage'),
 };
@@ -89,7 +92,9 @@ export const generateRoutes = () => {
             path: child.path,
             element,
           });
-        } else {
+        }
+        
+        else {
           console.warn(`No component found for route: ${child.id} → ${child.path}`);
         }
       });

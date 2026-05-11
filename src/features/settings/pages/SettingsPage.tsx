@@ -56,7 +56,7 @@ const settingsCards = [
         icon: Share2,
         title: "Social Accounts",
         description: "Manage and update your social accounts securely and effortlessly.",
-        path: "/settings/social-accounts",
+        path: "/integration/connected-accounts",
     },
     {
         icon: Palette,

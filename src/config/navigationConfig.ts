@@ -26,8 +26,9 @@ export const BASE_NAVIGATION: NavModule[] = [
       { id: 'competitors', name: 'Competitors', path: '/location/competitors', showInNav: true },
     ],
   },
+  // add more modules here 
   {
-    id: 'smm',
+    id: 'integration',
     name: 'SMM',
     icon: MonitorPlay,
     children: [
@@ -39,5 +40,14 @@ export const BASE_NAVIGATION: NavModule[] = [
       { id: 'smm-analytics', name: 'Analytics', path: '/smm/analytics', showInNav: true },
     ],
   },
-  // add more modules here 
+  {
+    id: 'integration',
+    name: 'Integration',
+    icon: MonitorPlay,
+    children: [
+      { id: 'connections', name: 'Connections', path: '/integration/connections', showInNav: true },
+      { id: 'connected-accounts', name: 'Connected Accounts', path: '/integration/connected-accounts', showInNav: true },
+      { id: 'groups', name: 'Groups', path: '/integration/groups', showInNav: true },
+    ],
+  },
 ];  

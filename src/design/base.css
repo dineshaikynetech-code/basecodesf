@@ -71,6 +71,12 @@
 
     }
 
+    .text-thead {
+
+        font-size: var(--font-size-thead);
+
+    }
+
     
 
 
