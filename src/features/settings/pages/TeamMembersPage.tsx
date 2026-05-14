@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
@@ -11,21 +11,11 @@ import {
   TableHeader,
   TableRow,
 } from '@/shared/components/ui/table';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/shared/components/ui/dialog';
-import { Input } from '@/shared/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui/select';
-import { Label } from '@/shared/components/ui/label';
+
 import { ArrowLeft, Pencil, Trash2, UserPlus } from 'lucide-react';
 import { SettingsLayout } from '../components/SettingsLayout';
 import { LocalBusinessPageWrapper } from '@/shared/layouts/LocalBusinessPageWrapper';
+import { AddTeamMemberDialog } from '../components/AddTeamMemberDialog';
 
 interface TeamMember {
   id: number;
@@ -72,19 +62,16 @@ const mockTeamMembers: TeamMember[] = [
 ];
 
 const TeamMembers: React.FC = () => {
-const navigate = useNavigate();
-const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
-const [newMemberEmail, setNewMemberEmail] = useState("");
-const [newMemberRole, setNewMemberRole] = useState("Administrator");
+  const navigate = useNavigate();
+  const [newMemberEmail, setNewMemberEmail] = useState("");
+  const [newMemberRole, setNewMemberRole] = useState("Administrator");
 
- const handleAddMember = () => {
-    if (newMemberEmail.trim()) {
-      console.log("Adding new member:", { email: newMemberEmail, role: newMemberRole });
-      // TODO: Integrate with API + Zustand later
-      setIsAddDialogOpen(false);
-      setNewMemberEmail("");
-      alert("Member invitation sent successfully! (Demo)");
-    }
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+
+  const handleAddMember = (email: string, role: string) => {
+    // TODO: Call API / Update Zustand store
+    console.log('Adding member:', { email, role });
+    // Refresh member list...
   };
   const handleEdit = (id: number) => {
     console.log("Edit member:", id);
@@ -115,8 +102,9 @@ const [newMemberRole, setNewMemberRole] = useState("Administrator");
             </div>
 
             <Button
-              onClick={handleAddMember}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-md px-5 flex items-center gap-2"
+            variant="outline"
+              onClick={() => setIsAddDialogOpen(true)}
+              className={`px-8 py-1 h-9 font-medium transition-colors rounded-md border-primary/90 text-primary hover:text-primary-foreground hover:bg-primary`}
             >
               <UserPlus className="w-4 h-4" />
               Add New Member
@@ -149,11 +137,10 @@ const [newMemberRole, setNewMemberRole] = useState("Administrator");
                       <TableCell>
                         <Badge
                           variant={member.status === 'Added' ? "default" : "secondary"}
-                          className={`rounded-full px-3 py-1 text-xs font-medium ${
-                            member.status === 'Added'
-                              ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-100'
-                              : 'bg-rose-100 text-rose-700 hover:bg-rose-100'
-                          }`}
+                          className={`rounded-full px-3 py-1 text-xs font-medium ${member.status === 'Added'
+                            ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-100'
+                            : 'bg-rose-100 text-rose-700 hover:bg-rose-100'
+                            }`}
                         >
                           {member.status}
                         </Badge>
@@ -185,7 +172,11 @@ const [newMemberRole, setNewMemberRole] = useState("Administrator");
             </div>
           </Card>
         </div>
-        
+        <AddTeamMemberDialog
+          open={isAddDialogOpen}
+          onOpenChange={setIsAddDialogOpen}
+          onAddMember={handleAddMember}
+        />
       </LocalBusinessPageWrapper>
     </SettingsLayout>
   );

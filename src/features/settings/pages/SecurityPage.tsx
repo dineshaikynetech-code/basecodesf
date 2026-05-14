@@ -52,7 +52,7 @@ const Security: React.FC = () => {
             <Button
               variant="outline"
               onClick={() => (isEditing ? handleSave() : setIsEditing(true))}
-              className="rounded-md px-8 py-1 h-9 border-primary text-primary hover:bg-primary/5 font-medium transition-colors"
+              className={`px-8 py-1 h-9 font-medium transition-colors rounded-md border-primary/90 text-primary hover:text-primary-foreground hover:bg-primary`}
             >
               {isEditing ? "Save" : "Change"}
             </Button>

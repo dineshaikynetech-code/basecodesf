@@ -13,14 +13,15 @@ export const BASE_NAVIGATION: NavModule[] = [
     icon: Home,
     children: [
       { id: 'listing-dashboard', name: 'Listing Dashboard', path: '/location/listing-dashboard', showInNav: true },
-      {
-        id: 'add-business',
-        name: 'Add Business',
-        path: '/location/listing-dashboard/add-business',
-        showInNav: false           // ← This will be hidden from secondary sidebar
-      },
-      { id: 'listings', name: 'Listings', path: '/location/listings', showInNav: true },
+      // {
+      //   id: 'add-business',
+      //   name: 'Add Business',
+      //   path: '/location/listing-dashboard/add-business',
+      //   showInNav: false           // ← This will be hidden from secondary sidebar
+      // },
+      // { id: 'listings', name: 'Listings', path: '/location/listings', showInNav: true },
       { id: 'business-info', name: 'Business Info', path: '/location/business-info', showInNav: true },
+      { id: 'analytics', name: 'Analytics', path: '/location/analytics', showInNav: true },
       { id: 'reviews', name: 'Reviews', path: '/location/reviews', showInNav: true },
       { id: 'reputation', name: 'Reputation', path: '/location/reputation', showInNav: true },
       { id: 'competitors', name: 'Competitors', path: '/location/competitors', showInNav: true },

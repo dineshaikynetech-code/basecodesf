@@ -2,13 +2,6 @@ import React from 'react';
 import { Button } from '@/shared/components/ui/button';
 import FeatureSection from '../components/FeatureSection';
 
-// Assets (Paths assumed based on instructions)
-// import HeroIllustration from '@/assets/local-business-hero.svg';
-// import BusinessInfoImg from '@/assets/business-info-ui.svg';
-// import ReviewsImg from '@/assets/customer-reviews.svg';
-// import InsightsImg from '@/assets/review-insights.svg';
-// import CompetitorsImg from '@/assets/competitors-strategy.svg';
-// import FeatureSection from '../components/FeatureSection';
 
 import MapBgLeft from '@/assets/images/listing-dashboard-hero-map-left.png';
 import MapBgRight from '@/assets/images/listing-dashboard-hero-map-left.png';

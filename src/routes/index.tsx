@@ -8,6 +8,8 @@ import AppLayout from '@/shared/layouts/AppLayout';
 import ErrorElement from '@/shared/placholders/ErrorElement';
 import { useAuthStore } from '@/shared/store/authStore';
 import { useOnboardingStore } from '@/shared/store/onboardingStore';
+import PricingPlansPage from '@/features/settings/pages/PricingPlanPage';
+import AddBusiness from '@/features/local-business/pages/AddBusiness';
 
 const LoginPage = lazy(() => import('@/features/auth/pages/Login'));
 const RegisterPage = lazy(() => import('@/features/auth/pages/SignUp'));
@@ -143,6 +145,9 @@ export const router = createBrowserRouter([
           {
             path: 'subscription',
             element: withSuspense(<SubscriptionPage />, <DashboardPageSkeleton />),
+            children: [
+              { path: 'pricing', element: withSuspense(<PricingPlansPage />, <DashboardPageSkeleton />) },
+            ]
           },
           {
             path: 'ai-brand-agent',
@@ -170,7 +175,10 @@ export const router = createBrowserRouter([
           },
         ],
       },
-      
+      {
+        path: '/location/listing-dashboard/add-business',
+        element: withSuspense(<AddBusiness/>, <DashboardPageSkeleton />),
+      },
       { path: '*', element: <Navigate to="/location/listing-dashboard" replace /> },
     ],
   }

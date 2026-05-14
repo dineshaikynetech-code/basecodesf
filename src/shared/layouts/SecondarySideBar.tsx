@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/shared/components/ui/button';
 import { cn } from '@/shared/lib/utils';
 import { useUIStore } from '@/shared/store/uiStore';
+import { useMemo } from 'react';
 
 interface SecondarySidebarItem {
   id: string;
@@ -21,8 +22,33 @@ interface SecondarySideBarProps {
 
 export function SecondarySideBar({ isOpen, title, items }: SecondarySideBarProps) {
   const location = useLocation();
-const { sidebarCollapsed, closeSecondaryPanel } = useUIStore();
+const { sidebarCollapsed, closeSecondaryPanel,activeModuleTab } = useUIStore();
   const sidebarWidth = sidebarCollapsed ? 72 : 256;
+
+  // Merge parent items + active module tabs
+  const allItems = useMemo(() => {
+    const parentItems = items || [];
+    const moduleTabs = activeModuleTab?.tabs || [];
+
+    // Remove any duplicate items (by id)
+    const itemMap = new Map();
+
+    // Add parent items first (Listing Dashboard, etc.)
+    parentItems.forEach(item => itemMap.set(item.id, item));
+
+    // Add/override with module tabs
+    moduleTabs.forEach(tab => {
+      itemMap.set(tab.id, {
+        id: tab.id,
+        name: tab.label,
+        path: tab.path,
+      });
+    });
+
+    return Array.from(itemMap.values());
+  }, [items, activeModuleTab]);
+
+  const currentModuleTitle = activeModuleTab ? activeModuleTab.moduleKey.toUpperCase().replace('-', ' ') : title;
 
   return (
     <AnimatePresence>
@@ -41,7 +67,7 @@ const { sidebarCollapsed, closeSecondaryPanel } = useUIStore();
           {/* Header */}
           <div className="h-14 border-b border-white/10 flex items-center px-4 justify-between bg-white/5">
             <div className="font-bold text-muted-foreground text-xs uppercase tracking-widest opacity-80">
-              {title}
+              {currentModuleTitle}
             </div>
             <Button variant="ghost" size="icon" onClick={closeSecondaryPanel} className="h-8 w-8 hover:bg-white/10">
               <ChevronsLeft className="h-4 w-4" />
@@ -50,7 +76,7 @@ const { sidebarCollapsed, closeSecondaryPanel } = useUIStore();
 
           {/* Navigation Items */}
           <nav className="flex-1 p-3 space-y-2 overflow-y-auto">
-            {items.filter((item) => item.showInNav !== false).map((item) => {
+            {allItems.map((item) => {
               const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
               
               return (

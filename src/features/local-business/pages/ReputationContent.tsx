@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
-import { Button } from '@/shared/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/components/ui/select';
 import { DonutChart } from '@/shared/components/ui/donut-chart';
-import { Clock } from 'lucide-react';
 import { LocalBusinessPageWrapper } from '@/shared/layouts/LocalBusinessPageWrapper';
+import { withModuleTabs } from '../components/withLocationTabs';
+import { LOCATION_TABS } from '@/config/routeConfig';
 
 const reviewComparison = [
     { label: "New Reviews", value: "24", emoji: "🤩", bgColor: "bg-amber-100", change: "No change compared to last 30 days" },
@@ -126,4 +126,11 @@ const ReputationContent: React.FC = () => {
     );
 };
 
-export default ReputationContent;
+
+
+export default withModuleTabs({
+  WrappedComponent: ReputationContent,
+  tabs: LOCATION_TABS,
+  moduleKey: "location-hub",
+  defaultTab: "reputation",
+});

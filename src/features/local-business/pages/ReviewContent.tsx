@@ -1,8 +1,21 @@
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
-import { Plus, Star, MessageSquare, ArrowRight } from 'lucide-react';
+import { Plus, Star, MessageSquare,ArrowRight,ShieldCheck , Info,
+  BarChart3,
+  Users} from 'lucide-react';
 import { cn } from '@/shared/lib/utils';
+import { withModuleTabs } from '../components/withLocationTabs';
+import { LocalBusinessPageWrapper } from '@/shared/layouts/LocalBusinessPageWrapper';
+
+
+const LOCATION_TABS = [
+  { id: "business-info", label: "Business info", icon: <Info className="w-4 h-4" />, path: "/location/business-info" },
+  { id: "analytics", label: "Analytics", icon: <BarChart3 className="w-4 h-4" />, path: "/location/analytics" },
+  { id: "reviews", label: "Reviews", icon: <MessageSquare className="w-4 h-4" />, path: "/location/reviews" },
+  { id: "reputation", label: "Reputation", icon: <ShieldCheck className="w-4 h-4" />, path: "/location/reputation" },
+  { id: "competitors", label: "Competitors", icon: <Users className="w-4 h-4" />, path: "/location/competitors" },
+];
 
 interface Review {
   id: number;
@@ -73,6 +86,7 @@ const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
 
 const ReviewsContent: React.FC = () => {
   return (
+     <LocalBusinessPageWrapper>
     <div className="flex flex-col lg:flex-row gap-6">
       {/* Left Sidebar - Stats */}
       <div className="w-full lg:w-[340px] flex-shrink-0 space-y-4">
@@ -204,7 +218,14 @@ const ReviewsContent: React.FC = () => {
         </Card>
       </div>
     </div>
+    </LocalBusinessPageWrapper>
   );
 };
 
-export default ReviewsContent;
+
+export default withModuleTabs({
+  WrappedComponent: ReviewsContent,
+  tabs: LOCATION_TABS,
+  moduleKey: "location-hub",
+  defaultTab: "review",
+});

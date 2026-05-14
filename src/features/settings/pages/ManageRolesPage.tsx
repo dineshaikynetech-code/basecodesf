@@ -121,7 +121,7 @@ const ManageRoles: React.FC = () => {
                         <Button
                             variant="outline"
                             onClick={() => setIsAddingNew(true)}
-                            className="rounded-md px-6 py-1 h-9 border-primary text-primary hover:bg-primary/5 font-medium transition-colors"
+                            className={`px-8 py-1 h-9 font-medium transition-colors rounded-md border-primary/90 text-primary hover:text-primary-foreground hover:bg-primary`}
                         >
                             Add New Member
                         </Button>
@@ -158,7 +158,7 @@ const ManageRoles: React.FC = () => {
                                                             text={role.name}
                                                             className="text-gray-700"
                                                             breakpoints={{
-                                                                base: 'max-w-[80px]', 
+                                                                base: 'max-w-[80px]',
                                                                 sm: 'max-w-[200px]',   // Mobile
                                                                 md: 'max-w-[250px]',    // Tablet
                                                                 lg: 'max-w-[300px]',

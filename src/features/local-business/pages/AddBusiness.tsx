@@ -15,7 +15,6 @@ import {
   UserRound, 
   Star, 
   Heart, 
-  Search, 
   SlidersHorizontal, 
   ChevronLeft, 
   ChevronRight 
@@ -52,25 +51,25 @@ const LOCATIONS = [
 
  const AddBusiness: React.FC = () => {
   return (
-    <div className="flex flex-col w-full min-h-screen bg-[var(--background)] p-4 md:p-8 space-y-6">
+    <div className="flex flex-col w-full min-h-screen bg-background p-4 md:p-8 space-y-6">
       
       {/* Header Section */}
       <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-2">
-        <h1 className="text-xl font-bold text-[var(--foreground)]">Local Dashboard</h1>
+        <h1 className="text-xl font-bold text-foreground">Local Dashboard</h1>
         <div className="flex items-center gap-3">
-          <div className="flex bg-white rounded-lg border border-[var(--border)] p-1">
+          <div className="flex bg-white rounded-lg border border-border p-1">
             <Button variant="ghost" className="h-8 px-4 bg-green-700 text-white hover:bg-green-800 rounded-md">7 Days</Button>
             <Button variant="ghost" className="h-8 px-4 text-green-700 hover:bg-green-50">14 Days</Button>
             <Button variant="ghost" className="h-8 px-4 text-green-700 hover:bg-green-50">28 Days</Button>
           </div>
-          <Button className="bg-[var(--primary)] text-[var(--primary-foreground)] font-semibold px-6">
+          <Button className="bg-primary text-primary-foreground font-semibold px-6">
             Add New Business
           </Button>
         </div>
       </header>
 
       {/* Stats Overview Grid */}
-      <Card className="border-[var(--border)] bg-[var(--card)] shadow-sm">
+      <Card className="border-border bg-card shadow-sm">
         <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
           {STATS_DATA.map((stat, index) => (
             <div key={index} className={`flex flex-col p-6 rounded-2xl border ${stat.border} ${stat.bg} space-y-4`}>
@@ -85,19 +84,19 @@ const LOCATIONS = [
       </Card>
 
       {/* Filter Section */}
-      <Card className="border-[var(--border)] bg-[var(--card)] shadow-sm">
+      <Card className="border-border bg-card shadow-sm">
         <CardContent className="flex flex-col md:flex-row items-center justify-between gap-4 p-6">
           <div className="relative w-full md:max-w-md">
             <Input 
               placeholder="Search business or category..." 
-              className="pl-4 pr-10 border-[var(--border)] h-11"
+              className="pl-4 pr-10 border-border h-11"
             />
           </div>
           <div className="flex items-center gap-6">
             <button className="text-blue-600 font-semibold text-sm hover:underline underline-offset-4">
               Reset Filters
             </button>
-            <Button variant="outline" size="icon" className="border-[var(--border)] text-blue-500">
+            <Button variant="outline" size="icon" className="border-border text-blue-500">
               <SlidersHorizontal className="w-5 h-5" />
             </Button>
           </div>
@@ -105,14 +104,14 @@ const LOCATIONS = [
       </Card>
 
       {/* Locations Table Section */}
-      <Card className="border-[var(--border)] bg-[var(--card)] shadow-sm">
+      <Card className="border-border bg-card shadow-sm">
         <CardContent className="p-6">
-          <h2 className="text-lg font-bold mb-6 text-[var(--foreground)]">Locations</h2>
+          <h2 className="text-lg font-bold mb-6 text-foreground">Locations</h2>
           
-          <div className="rounded-xl border border-[var(--border)] overflow-hidden">
+          <div className="rounded-xl border border-border overflow-hidden">
             <Table>
               <TableHeader className="bg-gray-50/50">
-                <TableRow className="border-[var(--border)]">
+                <TableRow className="border-border">
                   <TableHead className="font-bold text-gray-700 py-4">Location</TableHead>
                   <TableHead className="font-bold text-gray-700">Rating</TableHead>
                   <TableHead className="font-bold text-gray-700">Reviews</TableHead>
@@ -123,11 +122,11 @@ const LOCATIONS = [
               </TableHeader>
               <TableBody>
                 {LOCATIONS.map((loc, i) => (
-                  <TableRow key={i} className="border-[var(--border)] hover:bg-gray-50/30 transition-colors">
+                  <TableRow key={i} className="border-border hover:bg-gray-50/30 transition-colors">
                     <TableCell className="py-4">
                       <div className="flex flex-col">
-                        <span className="font-bold text-[var(--foreground)]">{loc.name}</span>
-                        <span className="text-xs text-[var(--muted)] mt-1">{loc.address}</span>
+                        <span className="font-bold text-foreground">{loc.name}</span>
+                        <span className="text-xs text-muted-foreground mt-1">{loc.address}</span>
                       </div>
                     </TableCell>
                     <TableCell>
@@ -160,12 +159,12 @@ const LOCATIONS = [
             </Table>
             
             {/* Pagination Controls */}
-            <div className="flex items-center justify-end p-4 bg-white border-t border-[var(--border)] gap-2">
-              <Button variant="outline" size="icon" className="w-8 h-8 rounded border-[var(--border)]">
+            <div className="flex items-center justify-end p-4 bg-white border-t border-border gap-2">
+              <Button variant="outline" size="icon" className="w-8 h-8 rounded border-border">
                 <ChevronLeft className="w-4 h-4" />
               </Button>
               <span className="text-sm font-medium">Page 1</span>
-              <Button variant="outline" size="icon" className="w-8 h-8 rounded border-[var(--border)]">
+              <Button variant="outline" size="icon" className="w-8 h-8 rounded border-border">
                 <ChevronRight className="w-4 h-4 text-green-600" />
               </Button>
             </div>

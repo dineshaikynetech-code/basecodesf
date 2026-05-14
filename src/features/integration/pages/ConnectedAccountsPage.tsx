@@ -98,7 +98,7 @@ const ConnectedAccounts: React.FC = () => {
                     <Button
                         variant="outline"
                         onClick={() => navigate('/integration/connections')}
-                        className="rounded-md border-primary hover:text-primary-foreground hover:bg-primary/90">
+                        className="rounded-md border-primary/90 text-primary hover:text-primary-foreground hover:bg-primary">
                         Add New Channel
                     </Button>
                 </div>

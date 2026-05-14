@@ -4,6 +4,7 @@ import type { NavModule } from '@/config/appConfig';
 import { BASE_NAVIGATION } from '@/config/navigationConfig';
 import { DashboardPageSkeleton } from '@/features/dashboard/components/DashBoardPageSkeleton';
 import { SmmPageSkeleton } from '@/features/smm/components/SmmPageSkeleton';
+import { BarChart3, Info, MessageSquare, ShieldCheck, Users } from 'lucide-react';
 
 type PageLoader = () => Promise<{ default: ComponentType }>;
 
@@ -11,8 +12,8 @@ const pageComponentMap: Record<string, PageLoader> = {
   // Location Hub children
   'listing-dashboard': () => import('@/features/local-business/pages/ListingDashboard'),
   listings: () => import('@/features/local-business/pages/BusinessInfoContent'),
-  'add-business': () => import('@/features/local-business/pages/AddBusiness'),
-  'business-info': () => import('@/features/dashboard/pages/BusinessInfo'),
+  'business-info': () => import('@/features/local-business/pages/BusinessInfoContent'),
+  analytics: () => import('@/features/local-business/pages/AnalyticsContent'),
   reviews: () => import('@/features/local-business/pages/ReviewContent'),
   reputation: () => import('@/features/local-business/pages/ReputationContent'),
   competitors: () => import('@/features/dashboard/pages/Competitors'),
@@ -40,6 +41,7 @@ const getRouteFallback = (routeId: string) => {
       'listing-dashboard',
       'listings',
       'business-info',
+      'analytics',
       'reviews',
       'reputation',
       'competitors',
@@ -120,3 +122,11 @@ export const generateRoutes = () => {
 
   return routes;
 };
+
+export const LOCATION_TABS = [
+  { id: "business-info", label: "Business info", icon: <Info className="w-4 h-4" />, path: "/location/business-info" },
+  { id: "analytics", label: "Analytics", icon: <BarChart3 className="w-4 h-4" />, path: "/location/analytics" },
+  { id: "reviews", label: "Reviews", icon: <MessageSquare className="w-4 h-4" />, path: "/location/reviews" },
+  { id: "reputation", label: "Reputation", icon: <ShieldCheck className="w-4 h-4" />, path: "/location/reputation" },
+  { id: "competitors", label: "Competitors", icon: <Users className="w-4 h-4" />, path: "/location/competitors" },
+];

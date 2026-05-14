@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { Progress } from '@/shared/components/ui/progress';
@@ -9,6 +9,7 @@ import { LocalBusinessPageWrapper } from '@/shared/layouts/LocalBusinessPageWrap
 
 const SubscriptionPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const usageLimits = [
     { label: "Workspaces", current: 6, total: 10, color: "bg-emerald-500" },
@@ -25,6 +26,19 @@ const SubscriptionPage: React.FC = () => {
     { label: "Draft Posts", current: 112, total: "Unlimited" },
     { label: "RSS Feeds", current: 33, total: "Unlimited" },
   ];
+  const isPricingRoute = location.pathname.includes('/pricing');
+
+  if (isPricingRoute) {
+    return (
+      <SettingsLayout>
+        <LocalBusinessPageWrapper>
+          <Outlet />
+        </LocalBusinessPageWrapper>
+      </SettingsLayout>
+    )
+
+
+  }
 
   return (
     <SettingsLayout>
@@ -32,7 +46,7 @@ const SubscriptionPage: React.FC = () => {
         <div className="space-y-6">
           {/* Header */}
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mt-4">
               <Button
                 variant="ghost"
                 size="icon"
@@ -41,12 +55,9 @@ const SubscriptionPage: React.FC = () => {
               >
                 <ArrowLeft className="w-5 h-5" />
               </Button>
-              <h1 className="text-xl font-semibold">Subscription</h1>
+              <h1 className="text-base font-semibold">Subscription</h1>
             </div>
-
-          
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Left - Current Plan */}
             <div className="lg:col-span-4">
@@ -72,11 +83,11 @@ const SubscriptionPage: React.FC = () => {
                           <p className="font-semibold">Pro Plan</p>
                           <p className="text-sm text-muted-foreground">(1 Social Set, 1 User)</p>
                         </div>
-                        <div className="flex gap-3">
+                        <div className="flex flex-col gap-3">
                           <Button variant="outline" className="rounded-md px-6">
                             Cancel
                           </Button>
-                          <Button className="bg-emerald-600 hover:bg-emerald-700 rounded-md px-6">
+                          <Button onClick={() => navigate('/settings/subscription/pricing')} className="bg-emerald-600 hover:bg-emerald-700 rounded-md px-6">
                             Change
                           </Button>
                         </div>
@@ -95,19 +106,19 @@ const SubscriptionPage: React.FC = () => {
                 </CardHeader>
                 <CardContent className="space-y-6 pt-2">
                   {usageLimits.map((item, index) => (
-  <div key={index} className="space-y-2.5">
-    <div className="flex justify-between text-sm">
-      <span className="text-foreground">{item.label}</span>
-      <span className="text-muted-foreground font-medium">
-        {item.current} of {item.total} {item.unit}
-      </span>
-    </div>
-    <Progress 
-      value={typeof item.total === 'number' ? (item.current / item.total) * 100 : 0} 
-      className="h-2.5 bg-muted"
-    />
-  </div>
-))}
+                    <div key={index} className="space-y-2.5">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-foreground">{item.label}</span>
+                        <span className="text-muted-foreground font-medium">
+                          {item.current} of {item.total} {item.unit}
+                        </span>
+                      </div>
+                      <Progress
+                        value={typeof item.total === 'number' ? (item.current / item.total) * 100 : 0}
+                        className="h-2.5 bg-muted"
+                      />
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
             </div>
@@ -119,20 +130,20 @@ const SubscriptionPage: React.FC = () => {
                   <CardTitle className="text-base font-semibold">Workspace Limit</CardTitle>
                 </CardHeader>
                 <CardContent className="pt-2 space-y-6">
-                 {workspaceLimits.map((item, index) => (
-  <div key={index} className="space-y-2">
-    <div className="flex justify-between text-sm">
-      <span>{item.label}</span>
-      <span className="font-medium text-foreground">
-        {item.current} of {item.total}
-      </span>
-    </div>
-    <Progress 
-      value={0}   // Always 0 for Unlimited
-      className="h-2.5 bg-muted" 
-    />
-  </div>
-))}
+                  {workspaceLimits.map((item, index) => (
+                    <div key={index} className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span>{item.label}</span>
+                        <span className="font-medium text-foreground">
+                          {item.current} of {item.total}
+                        </span>
+                      </div>
+                      <Progress
+                        value={0}   // Always 0 for Unlimited
+                        className="h-2.5 bg-muted"
+                      />
+                    </div>
+                  ))}
                 </CardContent>
               </Card>
             </div>

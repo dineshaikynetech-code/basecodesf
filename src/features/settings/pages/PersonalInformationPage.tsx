@@ -60,7 +60,7 @@ const PersonalInformation: React.FC = () => {
                         <Button
                             variant="outline"
                             onClick={() => setIsEditing(!isEditing)}
-                            className={`rounded-md px-8 py-1 h-9 border-primary text-primary hover:bg-primary/5 font-medium transition-colors`}
+                            className={`px-8 py-1 h-9 font-medium transition-colors rounded-md border-primary/90 text-primary hover:text-primary-foreground hover:bg-primary`}
                         >
                             {isEditing ? "Save" : "Edit"}
                         </Button>

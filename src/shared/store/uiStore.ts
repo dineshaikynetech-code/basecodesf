@@ -6,10 +6,26 @@ interface SecondaryPanel {
   items: Array<{ id: string; name: string; path: string }>;
 }
 
+interface ModuleTab {
+  id: string;
+  label: string;
+  icon?: React.ReactNode;
+  path: string;
+}
+
+interface TabContext {
+  moduleKey: string;
+  activeTabId: string;
+  tabs: ModuleTab[];
+}
+
 interface UIState {
   sidebarCollapsed: boolean;
   secondaryPanel: SecondaryPanel | null;
   isSecondaryOpen: boolean;
+
+  // for tabs ( secondary sidebar context )
+  activeModuleTab: TabContext | null;
 
   toggleSidebar: () => void;
 
@@ -17,6 +33,9 @@ interface UIState {
   closeSecondaryPanel: () => void;
   // toggleSecondaryPanel: () => void;
   reopenSecondaryPanel: () => void;
+  setModuleTabs: (context: TabContext) => void;
+  setActiveModuleTab: (tabId: string) => void;
+  clearModuleTabs: () => void;
 }
 
 export const useUIStore = create<UIState>()(
@@ -25,6 +44,7 @@ export const useUIStore = create<UIState>()(
       sidebarCollapsed: false,
       secondaryPanel: null,
       isSecondaryOpen: false,
+      activeModuleTab: null,
 
       toggleSidebar: () => set((state) => ({ sidebarCollapsed: !state.sidebarCollapsed })),
 
@@ -47,6 +67,15 @@ export const useUIStore = create<UIState>()(
       //   const { isSecondaryOpen } = get();
       //   set({ isSecondaryOpen: !isSecondaryOpen });
       // },
+      setModuleTabs: (context) => set({ activeModuleTab: context }),
+      setActiveModuleTab: (tabId) =>
+        set((state) => ({
+          activeModuleTab: state.activeModuleTab
+            ? { ...state.activeModuleTab, activeTabId: tabId }
+            : null
+        })),
+      clearModuleTabs: () => set({ activeModuleTab: null }),
+
     }),
     {
       name: 'ui-storage',
