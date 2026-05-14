@@ -51,3 +51,20 @@ export interface BrandStyleCardProps {
   onEdit?: (style: BrandStyle) => void;
   onDelete?: (id: string) => void;
 }
+
+export interface LocationHub {
+  id: string;
+  name: string;
+  subtitle: string;
+}
+
+export interface AddTeamMemberDialogProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onAddMember: (data: {
+    email: string;
+    role: string;
+    socialMedia?: string[];
+    locationHubs?: LocationHub[];
+  }) => void;
+}
